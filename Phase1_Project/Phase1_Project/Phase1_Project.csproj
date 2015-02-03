@@ -158,15 +158,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Default Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Default Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Default Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Default Models\AccountViewModels.cs" />
+    <Compile Include="Models\Default Models\IdentityModels.cs" />
+    <Compile Include="Models\Default Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProjectDb.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\TimeEntry.cs" />
     <Compile Include="Models\User.cs" />
@@ -232,6 +234,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
