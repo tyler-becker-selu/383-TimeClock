@@ -1,0 +1,11 @@
+﻿@model Clock.Models.User
+
+
+@{
+    ViewBag.Title = "Portal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Time Entries for @Model.Username</h2>
+
+@Html.Partial("_TimeEntries", Model.TimeEntries)
