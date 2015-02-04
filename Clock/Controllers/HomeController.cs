@@ -32,9 +32,9 @@ namespace Clock.Controllers
             return View();
         }
 
-        public ActionResult Portal([Bind(Prefix = "Id")] int userId)
+        public ActionResult Portal([Bind(Prefix = "Id")] int? userId)
         {
-  
+            
             var user = _db.Users.Find(userId);
 
             if (user != null)
