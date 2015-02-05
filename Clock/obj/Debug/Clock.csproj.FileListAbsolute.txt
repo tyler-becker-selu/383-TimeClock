@@ -30,3 +30,34 @@ C:\383\Phase1 - working\Clock\obj\Debug\Clock.Migrations.InitialCreate.resources
 C:\383\Phase1 - working\Clock\obj\Debug\Clock.csproj.GenerateResource.Cache
 C:\383\Phase1 - working\Clock\obj\Debug\Clock.dll
 C:\383\Phase1 - working\Clock\obj\Debug\Clock.pdb
+C:\383\Phase 1 - working 2\Clock\bin\Clock.dll.config
+C:\383\Phase 1 - working 2\Clock\bin\Clock.dll
+C:\383\Phase 1 - working 2\Clock\bin\Clock.pdb
+C:\383\Phase 1 - working 2\Clock\bin\Antlr3.Runtime.dll
+C:\383\Phase 1 - working 2\Clock\bin\EntityFramework.dll
+C:\383\Phase 1 - working 2\Clock\bin\EntityFramework.SqlServer.dll
+C:\383\Phase 1 - working 2\Clock\bin\Microsoft.Web.Infrastructure.dll
+C:\383\Phase 1 - working 2\Clock\bin\Newtonsoft.Json.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Helpers.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Mvc.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Optimization.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Razor.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.Deployment.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.dll
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.Razor.dll
+C:\383\Phase 1 - working 2\Clock\bin\WebGrease.dll
+C:\383\Phase 1 - working 2\Clock\bin\EntityFramework.xml
+C:\383\Phase 1 - working 2\Clock\bin\EntityFramework.SqlServer.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Helpers.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Mvc.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Optimization.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.Razor.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.Deployment.xml
+C:\383\Phase 1 - working 2\Clock\bin\System.Web.WebPages.Razor.xml
+C:\383\Phase 1 - working 2\Clock\bin\Newtonsoft.Json.xml
+C:\383\Phase 1 - working 2\Clock\bin\Antlr3.Runtime.pdb
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.Migrations.InitialCreate.resources
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.csproj.GenerateResource.Cache
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.dll
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.pdb
