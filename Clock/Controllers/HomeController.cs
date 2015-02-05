@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Clock.DAL;
 using Clock.Models;
+using System.Web.Security;
 
 namespace Clock.Controllers
 {
@@ -36,10 +37,13 @@ namespace Clock.Controllers
         {
             
             var user = _db.Users.Find(userId);
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
 
-            if (user != null)
+            if (userId != null && (user.Username.Equals(currentUser) /*|| user.Role.Name.Equals("admin")*/))
             {
-                return View(user);
+              
+                    return View(user);   
+            
             }
 
             return HttpNotFound();

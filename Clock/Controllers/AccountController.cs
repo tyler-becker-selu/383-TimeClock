@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Clock.DAL;
 using Clock.Models;
 using System.Web.Security;
+using System.Web.Helpers;
 
 namespace Clock.Controllers
 {
@@ -19,7 +20,9 @@ namespace Clock.Controllers
             return View();
 
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult LogIn(Models.LoginViewModel user, string returnUrl)
         {
             bool _LogInFlag;
@@ -70,7 +73,7 @@ namespace Clock.Controllers
                 if (user != null)
                 {
 
-                    if (user.Password == password)
+                    if (Crypto.VerifyHashedPassword(user.Password,password) == true)
                     {
                         isValid = true;
                     }
