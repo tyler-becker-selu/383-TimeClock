@@ -12,14 +12,17 @@ namespace Clock.Controllers
 {
     public class AccountController : Controller
     {
+        ClockContext db = new ClockContext();
 
         //pulls LogIn View
         [HttpGet]
         public ActionResult LogIn()
         {
-            return View();
+            return View();           
 
         }
+
+  //***************************************************************************************************************************************************************//     
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,7 +38,21 @@ namespace Clock.Controllers
                 {
                     //set authentication cookie and redirect
                     FormsAuthentication.SetAuthCookie(user.Username, false);
-                    return RedirectToAction("Index","Home");
+                    using(var db = new ClockContext())
+                    {
+                        var un = db.Users.FirstOrDefault(u => u.Username == user.Username);
+                        if(un.RoleId == 1)
+                        {
+                            return RedirectToAction("Index", "User");
+                            
+                        }
+
+                        else
+                        {
+
+                            return RedirectToAction("Index","Home");
+                        }                        
+                    }                    
                 }
 
                 else
@@ -50,7 +67,7 @@ namespace Clock.Controllers
             return View();
         }
 
-
+//******************************************************************************************************************************************************************************************//
         [HttpPost]
         public ActionResult LogOff()
         {
@@ -59,7 +76,7 @@ namespace Clock.Controllers
         }
 
 
-
+//**************************************************************************************************************************************************************************************//
         //Checs username and password
         private bool IsValid(string username, string password)
         {
@@ -84,7 +101,52 @@ namespace Clock.Controllers
 
             return isValid;
         }
+
+        //*****************************************************************************************************************************************************************//
+
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ManageUser()
+        {
+                       
+
+            return View();
+        }
+
+       [HttpPost]
+        public ActionResult ManageUser(Models.ManageUserViewModel change)
+        {
+
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+           var user = db.Users.First(u => u.Username == currentUser);
+          
+
+            if (ModelState.IsValid && Crypto.VerifyHashedPassword(user.Password,change.OldPassword) ==true)
+            {                
+
+                var npass = Crypto.HashPassword(change.NewPassword);
+                user.Password = npass;
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+
+                ModelState.AddModelError("", "There was an Error");
+                
+
+            }
+
+            return View();
+
+           
+        }
+
+
     }
+
 
     
 
