@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace Clock.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         ClockContext _db = new ClockContext();
@@ -39,7 +40,7 @@ namespace Clock.Controllers
             var user = _db.Users.Find(userId);
             string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
 
-            if (userId != null && (user.Username.Equals(currentUser) /*|| user.Role.Name.Equals("admin")*/))
+            if (userId != null && user.Username.Equals(currentUser))
             {
               
                     return View(user);   
