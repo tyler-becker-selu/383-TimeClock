@@ -5,53 +5,82 @@
 <div class="jumbotron">
     <h1>Welcome to the Time Portal!</h1>
     <p class="lead">Current Time: <span id="time" /></p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
+    
+    <input type="button" id="Clockin" onclick="clockin()" value="ClockIn" name="Clockin"/>
+    <input type="button" id="ClockOut" onclick="clockout()" value="Clock Out" name="Clockout" />
+    @Html.ActionLink("View Entries", "Index", "TimeEntry", null,htmlAttributes: new { @class = "btn btn-primary" })
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
-<script type="text/javascript">
+    @Html.ActionLink("View Users", "Index", "User",null,htmlAttributes: new { @class = "btn btn-danger" })
+        
+    
+    
 
-     <!--
-    function updateTime() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
-        if (minutes < 10){
-            minutes = "0" + minutes;
+</div>
+    <script type="text/javascript">
+  <!--
+
+        function clockin() {
+            var dateNOw = new Date();
+            url2 = "/TimeEntry/ClockIn?time1=" + dateNOw.toUTCString();
+            $.ajax({
+                url: url2
+            });
+
         }
-        if (seconds < 10){
-            seconds = "0" + seconds;
+        function clockout() {
+
+            var dateNOw = new Date();
+
+            // alert(dateNOw.toUTCString());
+
+            url2 = "/TimeEntry/ClockOut?time2=" + dateNOw.toUTCString();
+            $.ajax({
+                url: url2
+
+            });
         }
-        var v = hours + ":" + minutes + ":" + seconds + " ";
-        if(hours > 11){
-            v+="PM";
-        } else {
-            v+="AM"
-        }
-        setTimeout("updateTime()",1000);
-        document.getElementById('time').innerHTML=v;
-    }
-    updateTime();
-    //-->
-</script>
+       /* var currentTime = new Date();
+        function getTime() {
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var v = hours + ":" + minutes + ":" + seconds + " ";
+            if (hours > 11) {
+                v += "PM";
+            } else {
+                v += "AM"
+            }
+            return v;
+
+        }*/
+           
+
+          /*  function updateTime() {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                if (minutes < 10){
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10){
+                    seconds = "0" + seconds;
+                }
+                var v = hours + ":" + minutes + ":" + seconds + " ";
+                if(hours > 11){
+                    v+="PM";
+                } else {
+                    v+="AM"
+                }
+                setTimeout("updateTime()",1000);
+                document.getElementById('time').innerHTML=v;
+            }
+            updateTime();*/
+            //-->
+    </script>

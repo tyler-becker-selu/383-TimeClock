@@ -61,3 +61,5 @@ C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.Migrations.InitialCreate.resour
 C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.csproj.GenerateResource.Cache
 C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.dll
 C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.pdb
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.csprojResolveAssemblyReference.cache
+C:\383\Phase 1 - working 2\Clock\obj\Debug\Clock.Migrations.dateUpdate.resources

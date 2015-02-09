@@ -37,7 +37,7 @@ namespace Clock.Migrations
           var TimeEntries = new List<TimeEntry>
             {
                new TimeEntry { Id=1, UserId=1 , TimeIn=DateTime.Parse("2002-09-24-06:00").ToLocalTime() , TimeOut=DateTime.Parse("2002-09-24-08:00").ToLocalTime()  },
-               new TimeEntry { Id=2, UserId=2 , TimeIn=DateTime.Parse("2012-09-24-06:00").ToLocalTime() , TimeOut=DateTime.Parse("2012-09-24-10:00").ToLocalTime()  }
+               new TimeEntry { Id=2, UserId=1 , TimeIn=DateTime.Parse("2012-09-24-06:00").ToLocalTime() , TimeOut=DateTime.Parse("2012-09-24-10:00").ToLocalTime()  }
             };
             TimeEntries.ForEach(s => context.TimeEntries.AddOrUpdate(s));
             context.SaveChanges();

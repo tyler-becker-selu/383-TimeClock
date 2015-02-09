@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -121,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TimeEntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\ClockContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -129,6 +132,10 @@
     <Compile Include="Migrations\201502030042021_InitialCreate.cs" />
     <Compile Include="Migrations\201502030042021_InitialCreate.Designer.cs">
       <DependentUpon>201502030042021_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502090235350_dateUpdate.cs" />
+    <Compile Include="Migrations\201502090235350_dateUpdate.Designer.cs">
+      <DependentUpon>201502090235350_dateUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -164,8 +171,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Portal.cshtml" />
@@ -176,10 +181,19 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\TimeEntry\Create.cshtml" />
+    <Content Include="Views\TimeEntry\Delete.cshtml" />
+    <Content Include="Views\TimeEntry\Details.cshtml" />
+    <Content Include="Views\TimeEntry\Edit.cshtml" />
+    <Content Include="Views\TimeEntry\Index.cshtml" />
+    <Content Include="Views\TimeEntry\ClockIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502030042021_InitialCreate.resx">
       <DependentUpon>201502030042021_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502090235350_dateUpdate.resx">
+      <DependentUpon>201502090235350_dateUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +231,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

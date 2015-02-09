@@ -8,12 +8,56 @@ using System.Web;
 using System.Web.Mvc;
 using Clock.Models;
 using Clock.DAL;
+using System.Web.Security;
 
 namespace Clock.Controllers
 {
+     [Authorize]
     public class TimeEntryController : Controller
     {
         private ClockContext db = new ClockContext();
+
+
+        public ActionResult ClockIn(String time1) 
+        {
+            var chkLogin = User.Identity.IsAuthenticated;//check if user is logged in
+            if(chkLogin)
+            {
+                var user = User.Identity.Name;
+                var getUser = db.Users.SingleOrDefault(u => u.Username == user);
+                TimeEntry time = new TimeEntry();
+                time.User = getUser;
+                DateTime getTime= new DateTime();
+                getTime = Convert.ToDateTime(time1).ToUniversalTime();
+                time.TimeIn = getTime;
+                db.TimeEntries.Add(time);
+                db.SaveChanges();
+                //send the time to database and update
+            }
+            return RedirectToAction("Index","TimeEntry");//redirect to a list of timeentries page
+        }
+
+        public ActionResult ClockOut(String time2)
+        {
+            var chkLogout = User.Identity.IsAuthenticated;//check if user is logged in
+            if (chkLogout)
+            {
+                TimeEntry time = new TimeEntry();
+                time = db.TimeEntries.OrderByDescending(u => u.Id).FirstOrDefault();
+                if(!time.TimeOut.HasValue)
+                {
+                    DateTime getTime2 = new DateTime();
+                    getTime2 = Convert.ToDateTime(time2).ToUniversalTime();
+                    time.TimeOut = getTime2;
+                    db.Entry(time).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+                //send the time to database and update
+            }
+            return RedirectToAction("Index", "TimeEntry");//redirect to a list of timeentries page
+        }
+
 
         // GET: /TimeEntry/
         public ActionResult Index()
@@ -42,9 +86,15 @@ namespace Clock.Controllers
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "Username");
             return View();
+            
         }
+         // POST: /TimeEntry/Create
 
-        // POST: /TimeEntry/Create
+
+
+
+
+       
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
