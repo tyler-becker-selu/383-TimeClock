@@ -10,6 +10,7 @@ using Clock.Models;
 using Clock.DAL;
 using System.Web.Security;
 
+
 namespace Clock.Controllers
 {
      [Authorize]
@@ -59,11 +60,34 @@ namespace Clock.Controllers
         }
 
 
-        // GET: /TimeEntry/
+
+
+
+/*
+namespace Clock.Controllers
+{
+
+    [Authorize]
+
+    public class TimeEntryController : Controller
+    {
+        private ClockContext db = new ClockContext();
+
+ */       // GET: /TimeEntry/
         public ActionResult Index()
         {
-            var timeentries = db.TimeEntries.Include(t => t.User);
-            return View(timeentries.ToList());
+
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            var user = db.Users.First(u => u.Username == currentUser);
+            if (user.RoleId == 1)
+            {
+                var timeentries = db.TimeEntries.Include(t => t.User);
+                return View(timeentries.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: /TimeEntry/Details/5
@@ -84,11 +108,23 @@ namespace Clock.Controllers
         // GET: /TimeEntry/Create
         public ActionResult Create()
         {
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            var user = db.Users.First(u => u.Username == currentUser);
+            if (user.RoleId == 1)
+            {
             ViewBag.UserId = new SelectList(db.Users, "Id", "Username");
             return View();
-            
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
         }
          // POST: /TimeEntry/Create
+
+
 
 
 
@@ -115,17 +151,26 @@ namespace Clock.Controllers
         // GET: /TimeEntry/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            var user = db.Users.First(u => u.Username == currentUser);
+            if (user.RoleId == 1)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TimeEntry timeentry = db.TimeEntries.Find(id);
+                if (timeentry == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.UserId = new SelectList(db.Users, "Id", "Username", timeentry.UserId);
+                return View(timeentry);
             }
-            TimeEntry timeentry = db.TimeEntries.Find(id);
-            if (timeentry == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "Username", timeentry.UserId);
-            return View(timeentry);
         }
 
         // POST: /TimeEntry/Edit/5
@@ -148,6 +193,10 @@ namespace Clock.Controllers
         // GET: /TimeEntry/Delete/5
         public ActionResult Delete(int? id)
         {
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            var user = db.Users.First(u => u.Username == currentUser);
+            if (user.RoleId == 1)
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,6 +207,11 @@ namespace Clock.Controllers
                 return HttpNotFound();
             }
             return View(timeentry);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: /TimeEntry/Delete/5
@@ -171,6 +225,16 @@ namespace Clock.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET: /User/Summary
+        
+        //public ActionResult Summary(int? id)
+        //{
+
+        //    var timeentries = db.TimeEntries.Include(t => t.User);
+        //    return View(timeentries.ToList());
+           
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -180,4 +244,4 @@ namespace Clock.Controllers
             base.Dispose(disposing);
         }
     }
-}
+     }
