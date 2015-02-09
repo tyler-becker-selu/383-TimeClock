@@ -12,6 +12,7 @@ using System.Web.Helpers;
 
 namespace Clock.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private ClockContext db = new ClockContext();
