@@ -25,6 +25,7 @@ namespace Clock.Models
 
 
         public int RoleId { get; set; }
+        public bool LogFlag { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<TimeEntry> TimeEntries { get; set; }
 

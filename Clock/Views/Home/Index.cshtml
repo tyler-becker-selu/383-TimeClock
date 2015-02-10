@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    
+    
 }
 
 <div class="jumbotron">
@@ -7,10 +9,20 @@
     <p class="lead">Current Time: <span id="time" /></p>
     
     <input type="button" id="Clockin" onclick="clockin()" value="ClockIn" name="Clockin"/>
+        
+            
+            
+                <div id="Findme" class="hidden">@ViewBag.messege</div>
+                
+            
+            
+            
+        
+
     <input type="button" id="ClockOut" onclick="clockout()" value="Clock Out" name="Clockout" />
     @Html.ActionLink("View Entries", "Portal", "Home", new { userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name }, htmlAttributes: new { @class = "btn btn-primary" })
 
-    @Html.ActionLink("View Users", "Index", "User",null,htmlAttributes: new { @class = "btn btn-danger" })
+   
         
     
     
@@ -61,7 +73,7 @@
         }*/
            
 
-          /*  function updateTime() {
+            function updateTime() {
                 var currentTime = new Date();
                 var hours = currentTime.getHours();
                 var minutes = currentTime.getMinutes();
@@ -81,6 +93,10 @@
                 setTimeout("updateTime()",1000);
                 document.getElementById('time').innerHTML=v;
             }
-            updateTime();*/
+            updateTime();
             //-->
     </script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/button")
+}

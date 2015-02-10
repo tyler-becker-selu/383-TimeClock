@@ -29,7 +29,8 @@ namespace Clock.Migrations
             var HashPassword = Crypto.HashPassword("selu2014");
             var Users = new List<User>
                 {
-                new User {Id= 1 , Username="admin", Firstname="selu", Lastname="selu", Password=HashPassword , RoleId=1 }
+                new User {Id= 1 , Username="admin", Firstname="selu", Lastname="selu", Password=HashPassword , RoleId=1 },
+                new User {Id= 2 , Username="test", Firstname="test", Lastname="test", Password=HashPassword , RoleId=1 }
 
              };
             Users.ForEach(s => context.Users.AddOrUpdate(s));
