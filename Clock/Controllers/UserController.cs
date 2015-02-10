@@ -21,8 +21,18 @@ namespace Clock.Controllers
         // GET: /User/
         public ActionResult Index()
         {
+            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            var authUser = db.Users.First(u => u.Username == currentUser);
+
+            if (authUser.RoleId == 1)
+            {
             var users = db.Users.Include(u => u.Role);
             return View(users.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: /User/Details/5
@@ -60,6 +70,7 @@ namespace Clock.Controllers
 
             if (user.RoleId == 1)
             {
+                
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name");
             return View();
             }
@@ -78,10 +89,19 @@ namespace Clock.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                if(!db.Users.Any(m => m.Username == user.Username))
+                {
+              
                 user.Password = Crypto.HashPassword(user.Password);
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Create");
+                }
             }
 
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name", user.RoleId);

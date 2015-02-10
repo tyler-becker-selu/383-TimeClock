@@ -7,8 +7,17 @@
 <h2>Index</h2>
 
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+  @*@Html.DropDownListFor("Username",Model.)*@
+</p>
+
 <table class="table">
     <tr>
+
         <th>
             @Html.DisplayNameFor(model => model.User.Username)
         </th>
@@ -39,14 +48,15 @@
             @Html.DisplayFor(modelItem => item.TimeOut)
         </td>
 
+
            
+
 
         <td>
             @Html.DisplayFor(modelItem => hours)
         </td>
-        <td>
-            @Html.ActionLink("Summary", "Summary", new { id = item.Id }) |
 
+            @Html.ActionLink("Summary", "Summary", new { id = item.Id }) |
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
