@@ -8,7 +8,7 @@
     
     <input type="button" id="Clockin" onclick="clockin()" value="ClockIn" name="Clockin"/>
     <input type="button" id="ClockOut" onclick="clockout()" value="Clock Out" name="Clockout" />
-    @Html.ActionLink("View Entries", "Index", "TimeEntry", null,htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("View Entries", "Portal", "Home", new { userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name }, htmlAttributes: new { @class = "btn btn-primary" })
 
     @Html.ActionLink("View Users", "Index", "User",null,htmlAttributes: new { @class = "btn btn-danger" })
         

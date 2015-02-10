@@ -16,33 +16,15 @@ namespace Clock.Controllers
 
         public ActionResult Index()
         {
-
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Portal(string userName)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Portal([Bind(Prefix = "Id")] int? userId)
-        {
-            
-            var user = _db.Users.Find(userId);
-            string currentUser = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-
-            if (userId != null && user.Username.Equals(currentUser))
+            if (_db.Users.Where(r => r.Username.Equals(userName)).Any() && userName.Equals(FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name))
             {
-              
+                    var user = _db.Users.Where(r => r.Username.Equals(userName)).First();
                     return View(user);   
             
             }
